@@ -14,3 +14,19 @@ type MyOmit<T, G> = {
   [P in keyof T as P extends G ? never : P]: T[P]
 }
 type OmitItem = MyOmit<Item, 'a'>
+
+type MyReadonly<T> = {
+  readonly [P in keyof T]: T[P] 
+}
+
+interface Todo {
+  title: string
+  description: string
+}
+
+const todo: MyReadonly<Todo> = {
+  title: 'hello',
+  description: 'foo'
+}
+
+// todo.description = 'foo1'
