@@ -48,3 +48,10 @@ type Includes<T extends readonly any[], U> = {
   [P in T[number]]: true
 }[U] extends true ? true : false
 type isPillarMen = Includes<['Kars', 'Esidisi', 'Wamuu', 'Dio'], 'Dio'> // expected to be `true`
+
+//
+export const foo = (arg1: string, arg2: number): void => {}
+
+type MyParameters<T extends (...args: any[]) => unknown> = T extends (...args: infer U) => unknown ? U : never 
+
+type FunctionParamsType = MyParameters<typeof foo> // [arg1: string, arg2: number]
